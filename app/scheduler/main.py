@@ -3,11 +3,15 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from loguru import logger
 from app.core.config import settings
 from app.scheduler.job import ScannerJob
+from app.utils.load_tickers import load_tickers_to_db
 
 async def main():
     logger.info("Initializing APScheduler...")
     scheduler = AsyncIOScheduler()
     scanner_job = ScannerJob()
+    
+    # Load tickers to db first
+    await load_tickers_to_db()
     
     # Run once immediately on startup
     asyncio.create_task(scanner_job.run())

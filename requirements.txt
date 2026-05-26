@@ -14,3 +14,4 @@ httpx
 python-dotenv
 loguru
 pandas_ta
+python-telegram-bot

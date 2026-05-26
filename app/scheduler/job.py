@@ -95,7 +95,7 @@ class ScannerJob:
                     
                     logger.info(f"Processing Alert for Top Candidate: {ticker} (Score: {score})")
                     # Kirim ke Telegram (Cooldown dicek di dalam alert_manager)
-                    await self.alert_manager.process_alert(ticker, score, meta)
+                    await self.alert_manager.process_alert(ticker, score, meta, session)
                     
                     # Simpan ke tabel Alerts (opsional track success/fail alert telegram di DB)
                     new_alert = Alert(

@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Optional
 
 class Settings(BaseSettings):
-    APP_NAME: str = "ScannerNeuro IDX Breakout"
+    APP_NAME: str = "Neuro Screener"
     ENVIRONMENT: str = "development"
     LOG_LEVEL: str = "INFO"
     

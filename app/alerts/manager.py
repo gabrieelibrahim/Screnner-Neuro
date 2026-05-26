@@ -33,7 +33,7 @@ class AlertManager:
             f"<b>RVOL:</b> {data['rvol']:.1f}x\n"
             f"<b>RSI:</b> {data['rsi']:.1f}\n"
             f"<b>Score:</b> {score:.1f}/100\n\n"
-            f"<i>ScannerNeuro IDX Engine</i>"
+            f"<i>Neuro Screener</i>"
         )
         return msg
 

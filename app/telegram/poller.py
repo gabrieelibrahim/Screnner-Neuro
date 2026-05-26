@@ -18,7 +18,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
             new_user = User(chat_id=chat_id, username=username)
             session.add(new_user)
             await session.commit()
-            await update.message.reply_text("✅ Selamat datang! Anda sekarang berlangganan sinyal Breakout ScannerNeuro.")
+            await update.message.reply_text("✅ Selamat datang! Anda sekarang berlangganan sinyal Breakout Neuro Screener.")
             logger.info(f"New user registered: {username} ({chat_id})")
         else:
             if not user.is_active:
@@ -29,7 +29,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await update.message.reply_text("✅ Anda sudah berlangganan.")
 
 async def ping_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🏓 Pong! ScannerNeuro sedang berjalan dan siap mencari cuan.")
+    await update.message.reply_text("🏓 Pong! Neuro Screener sedang berjalan dan siap mencari cuan.")
 
 def build_bot_app():
     # We must not run this if no token is provided

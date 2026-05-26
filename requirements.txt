@@ -14,5 +14,4 @@ pydantic-settings==2.2.1
 httpx==0.27.0
 python-dotenv==1.0.1
 loguru==0.7.2
-TA-Lib==0.4.28 # (Opsional, tapi jika menggunakan pandas-ta bisa diganti)
-pandas-ta==0.3.14
+pandas_ta>=0.3.14b1

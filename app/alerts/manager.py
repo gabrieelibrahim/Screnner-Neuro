@@ -23,16 +23,15 @@ class AlertManager:
         await self.redis_client.setex(key, self.cooldown_seconds, "1")
 
     def _format_alert(self, ticker: str, score: float, data: Dict[str, Any]) -> str:
-        clean_ticker = ticker.replace('.JK', '')
-        change_pct = ((data['close'] - data['open']) / data['open']) * 100 if data.get('open', 0) > 0 else 0
-        
         msg = (
-            f"🔥 <b>BREAKOUT ALERT</b> 🔥\n\n"
-            f"<b>Ticker:</b> #{clean_ticker}\n"
-            f"<b>Price:</b> Rp {data['close']:,.0f} ({change_pct:+.1f}%)\n"
+            f"🔥 <b>CONFIRMED BREAKOUT</b>\n\n"
+            f"<b>Ticker:</b> {ticker}\n"
+            f"<b>Price:</b> {data['price']}\n"
             f"<b>RVOL:</b> {data['rvol']:.1f}x\n"
-            f"<b>RSI:</b> {data['rsi']:.1f}\n"
-            f"<b>Score:</b> {score:.1f}/100\n\n"
+            f"<b>Breakout Volume:</b> Strong\n"
+            f"<b>Resistance:</b> Confirmed\n"
+            f"<b>Trend:</b> Bullish\n"
+            f"<b>RSI:</b> {data['rsi']:.1f}\n\n"
             f"<i>Neuro Screener</i>"
         )
         return msg

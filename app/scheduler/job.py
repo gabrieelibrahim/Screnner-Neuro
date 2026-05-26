@@ -84,9 +84,12 @@ class ScannerJob:
                         ticker=ticker,
                         signal_type="BREAKOUT",
                         score=score,
-                        price=meta['close'],
+                        price=meta['price'],
                         rvol=meta['rvol'],
                         rsi=meta['rsi'],
+                        breakout_confirmed=meta.get('breakout_confirmed', False),
+                        breakout_strength=meta.get('breakout_strength', 0.0),
+                        breakout_volume_score=meta.get('breakout_volume_score', 0.0),
                         details=meta
                     )
                     session.add(new_signal)

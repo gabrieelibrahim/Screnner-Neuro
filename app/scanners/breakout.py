@@ -54,6 +54,7 @@ class BreakoutScanner:
                 return False, "Zero candle range", metadata
                 
             close_position = (close - low) / candle_range
+            body_strength = abs(close - open_price) / candle_range
             if close_position < 0.5:
                 return False, f"Rejection candle (Close at {close_position*100:.1f}%)", metadata
                 
@@ -61,6 +62,25 @@ class BreakoutScanner:
             # If price is > 15% above EMA20, it's risky (chasing)
             if (close - ema20) / ema20 > 0.15:
                 return False, "Overextended from EMA20", metadata
+
+            # Breakout Strength Calculation
+            breakout_dist = (close - resistance) / resistance
+            # Normalize RVOL to max 10
+            rvol_str = min(rvol / 10.0, 1.0)
+            
+            breakout_strength = (
+                (breakout_dist * 10) +
+                (rvol_str * 5) + 
+                (body_strength * 2) +
+                (close_position * 3)
+            )
+
+            metadata.update({
+                "candle_close_pos": close_position,
+                "candle_body": body_strength,
+                "breakout_strength": breakout_strength,
+                "breakout_confirmed": True,
+            })
 
             return True, "Valid Breakout", metadata
             

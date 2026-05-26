@@ -15,6 +15,11 @@ class Signal(Base):
     rvol = Column(Float)
     rsi = Column(Float)
     
+    # New Confirmation Fields
+    breakout_confirmed = Column(Boolean, default=False)
+    breakout_strength = Column(Float, default=0.0)
+    breakout_volume_score = Column(Float, default=0.0)
+    
     details = Column(JSON) # Simpan metadata tambahan (alasan lolos filter)
     
     timestamp = Column(DateTime(timezone=True), index=True)
